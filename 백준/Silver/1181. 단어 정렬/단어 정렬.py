@@ -10,4 +10,4 @@ for _ in range(n):
 ls.sort()
 ls.sort(key=len)
 for word in ls:
-    print(word)
+    print(word, sep='\n')
