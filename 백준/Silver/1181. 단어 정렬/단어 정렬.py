@@ -5,9 +5,9 @@ n = int(input())
 ls = []
 for _ in range(n):
     word = input().rstrip()
-    cnt = len(word)
-    if [cnt,word] not in ls:
-        ls.append([cnt,word])
+    if word not in ls:
+        ls.append(word)
 ls.sort()
-for cnt, word in ls:
+ls.sort(key=len)
+for word in ls:
     print(word)
