@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 dic1 = {}
 dic2 = {}
 for i in range(3):
