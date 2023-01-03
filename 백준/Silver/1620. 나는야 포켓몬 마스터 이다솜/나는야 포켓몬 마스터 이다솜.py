@@ -1,10 +1,13 @@
-n,m = map(int,input().split())
-pokemon = { i:input() for i in range(n)}
+import sys
+input = sys.stdin.readline
+
+n,m = map(int,input().rstrip().split())
+pokemon = { i:input().rstrip() for i in range(n)}
 pokemon2 = { v:k for k,v in pokemon.items()}
 
 res = []
 for i in range(m):
-    str = input()
+    str = input().rstrip()
     if str.isdigit() == True:
         res.append(pokemon[int(str)-1])
     else:
