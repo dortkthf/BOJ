@@ -1,34 +1,17 @@
-import sys
+import sys, math
 input = sys.stdin.readline
-
-# a 와 b 가 m 으로 나눈 나머지가 동일하면 a-b는 m 의 배수이다
 
 n = int(input())
 nums = [int(input()) for i in range(n)]
 nums.sort()
-
-nums2 = []
-
+gcd = nums[1] - nums[0]
 res = []
-
 for i in range(n-1):
-    nums2.append(nums[i+1]-nums[i])
-
-for i in nums2:
-    nums3 = [] 
-    for j in range(1,int(i**(1/2))+1):
-        if i%j == 0:
-            nums3.append(j)
-            nums3.append(i//j)
-    nums3.sort()
-    for k in nums3:
-        for a in nums:
-            if nums.index(a) == 0:
-                tmp = a%k
-            if a%k != tmp:
-                break
-        else:
-            res.append(k)
+    gcd = math.gcd(gcd,nums[i+1]-nums[i])
+for i in range(1,int(math.sqrt(gcd))+1):
+    if gcd%i == 0:
+        res.append(i)
+        res.append(gcd//i)
 res = list(set(res))
 res.sort()
 res.remove(1)
