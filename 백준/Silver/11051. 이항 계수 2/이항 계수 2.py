@@ -1,6 +1,5 @@
 n,k = map(int,input().split())
 
-
 def fac(a):
     res = 1
     for i in range(2,a+1):
@@ -9,5 +8,4 @@ def fac(a):
 
 ans = fac(n)//fac(k)//fac(n-k)
 
-
-print(round(ans%10007))
+print(ans%10007)
