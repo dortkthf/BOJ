@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n,m = map(int,input().split())
 
 nums = list(i for i in range(1,n+1))
