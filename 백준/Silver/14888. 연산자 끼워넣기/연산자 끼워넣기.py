@@ -1,6 +1,6 @@
-# itertools 의 permutations를 사용하여 문제를 해결하기
-
 from itertools import permutations
+import sys
+input = sys.stdin.readline
 
 n = int(input())
 nums = list(map(int,input().split()))
