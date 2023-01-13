@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 res = {}
 for a in range(21):
     for b in range(21):
