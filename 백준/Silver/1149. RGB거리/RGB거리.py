@@ -1,3 +1,6 @@
+import sys
+input = sys.stdin.readline
+
 n = int(input())
 house = [list(map(int,input().split())) for i in range(n)]
 res = [[] for i in range(n)]
