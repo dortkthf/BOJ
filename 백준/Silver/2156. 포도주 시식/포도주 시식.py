@@ -1,4 +1,6 @@
 # 안마실때, 한잔마실때, 두잔마실때
+import sys
+input = sys.stdin.readline
 
 n = int(input())
 podo = [int(input()) for i in range(n)]
