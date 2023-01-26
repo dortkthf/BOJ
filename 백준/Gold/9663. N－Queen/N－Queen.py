@@ -1,31 +1,25 @@
-import sys
-input = sys.stdin.readline
+Used1 = [0] * 40
+Used2 = [0] * 40
+Used3 = [0] * 40
 
-n = int(input())
+cnt = 0
+N = int(input())
 
-row = [0 for i in range(n)]
-find = []
-ans = 0
-
-def n_queens(x):
-    global ans, find
-    if x == n:
-        ans+=1
+def func(x):
+    global cnt
+    if x == N:
+        cnt += 1
         return
-    for i in range(n):
-        if i in find:
+    for i in range(N):
+        if Used1[i] or Used2[i+x] or Used3[x-i+N-1]:
             continue
-        if x>=1:
-            if abs(row[x-1]-i) == 1:
-                continue
-        row[x] = i
-        for j in range(x):
-            if row[j] == row[x] or abs(row[x]-row[j]) == abs(x-j):
-                break
-        else:
-            find.append(i)
-            n_queens(x+1)
-            find.remove(i)
+        Used1[i] = 1
+        Used2[i+x] = 1
+        Used3[x-i+N-1] = 1
+        func(x+1)
+        Used1[i] = 0
+        Used2[i + x] = 0
+        Used3[x - i + N - 1] = 0
 
-n_queens(0)
-print(ans)
+func(0)
+print(cnt)
