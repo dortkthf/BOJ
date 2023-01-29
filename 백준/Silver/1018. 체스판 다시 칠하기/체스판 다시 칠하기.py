@@ -1,44 +1,32 @@
-n,m = map(int, input().split())
-nm = list(input() for i in range(n))
+import sys
+input = sys.stdin.readline
 
-nn = n-8
-mm = m-8
-dp = []
+n,m = map(int,input().split())
+k = 8
+chess = [input().rstrip() for i in range(n)]
+dp_black = [list(0 for i in range(m+1)) for i in range(n+1)]
+dp_white = [list(0 for i in range(m+1)) for i in range(n+1)]
 res = []
+for i in range(1,n+1):
+    for j in range(1,m+1):
+        if (i+j)%2 == 0:
+            if chess[i-1][j-1] == 'B':
+                dp_black[i][j] = dp_black[i-1][j] + dp_black[i][j-1] - dp_black[i-1][j-1]
+                dp_white[i][j] = dp_white[i-1][j] + dp_white[i][j-1] - dp_white[i-1][j-1] + 1
+            else:
+                dp_black[i][j] = dp_black[i-1][j] + dp_black[i][j-1] - dp_black[i-1][j-1] + 1
+                dp_white[i][j] = dp_white[i-1][j] + dp_white[i][j-1] - dp_white[i-1][j-1]
+        elif (i+j)%2 != 0:
+            if chess[i-1][j-1] == 'W':
+                dp_black[i][j] = dp_black[i-1][j] + dp_black[i][j-1] - dp_black[i-1][j-1]
+                dp_white[i][j] = dp_white[i-1][j] + dp_white[i][j-1] - dp_white[i-1][j-1] + 1
+            else:
+                dp_black[i][j] = dp_black[i-1][j] + dp_black[i][j-1] - dp_black[i-1][j-1] + 1
+                dp_white[i][j] = dp_white[i-1][j] + dp_white[i][j-1] - dp_white[i-1][j-1]
 
-for i in range(nn+1):
-    for j in range(mm+1):
-        dp.append([i,j])
-
-for d in dp:
-    base = 'W'
-    cnt = 0
-    for i in range(d[0],d[0]+8,2):
-        for j in range(d[1],d[1]+8,2):
-            if nm[i][j] != base :
-                cnt+=1
-            if nm[i+1][j] == base :
-                cnt+=1
-        for j in range(d[1]+1,d[1]+8,2):
-            if nm[i][j] == base: 
-                cnt+=1
-            if nm[i+1][j] != base:
-                cnt+=1
-    res.append(cnt)
-
-    base = 'B'
-    cnt = 0
-    for i in range(d[0],d[0]+8,2):
-        for j in range(d[1],d[1]+8,2):
-            if nm[i][j] != base :
-                cnt+=1
-            if nm[i+1][j] == base :
-                cnt+=1
-        for j in range(d[1]+1,d[1]+8,2):
-            if nm[i][j] == base: 
-                cnt+=1
-            if nm[i+1][j] != base:
-                cnt+=1
-    res.append(cnt)
+for i in range(k,n+1):
+    for j in range(k,m+1):
+        res.append(dp_black[i][j]-dp_black[i-k][j]-dp_black[i][j-k]+dp_black[i-k][j-k])
+        res.append(dp_white[i][j]-dp_white[i-k][j]-dp_white[i][j-k]+dp_white[i-k][j-k])
 
 print(min(res))
