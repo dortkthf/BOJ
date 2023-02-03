@@ -5,23 +5,15 @@ n,k = map(int,input().split())
 
 p = 1000000007
 
-nfac = 1
-nkfac = 1
-kfac = 1
+def fac(a):
+    res = 1
+    for i in range(1,a+1):
+        res*=i
+        res%=p
+    return res
 
-for i in range(1,n+1):
-    nfac*=i
-    nfac%=p
-
-for i in range(1,n-k+1):
-    nkfac*=i
-    nkfac%=p
-
-for i in range(1,k+1):
-    kfac*=i
-    kfac%=p
-
-p2 = (nkfac*kfac)%p
+n2 = fac(n)
+p2 = fac(n-k)*fac(k)%p
 
 ans = 1
 def find(a,b,c):
@@ -43,5 +35,5 @@ def find(a,b,c):
         return
 
 find(p2,p-2,p)
-ans*=nfac
-print(ans%p)
+
+print(n2*ans%p)
