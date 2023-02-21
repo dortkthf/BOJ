@@ -1,10 +1,9 @@
-import sys
-input = sys.stdin.readline
-
-word = input().rstrip()
-compare = word[::-1]
-
-if word == compare:
-    print(1)
+l = (input())
+ll = len(l)
+j = False
+for i in range(ll//2):
+    if l[i] != l[ll-1-i]:
+        print(0)
+        break        
 else:
-    print(0)
+    print(1)
