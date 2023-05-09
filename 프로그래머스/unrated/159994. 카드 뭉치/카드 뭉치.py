@@ -9,5 +9,5 @@ def solution(cards1, cards2, goal):
             c2+=1
         else:
             answer = 'No'
-            break
+            return answer
     return answer
