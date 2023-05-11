@@ -5,8 +5,9 @@ def solution(players, callings):
     for i in callings:
         n = res[i]
         tmp = players[n-1]
+        res[i] = n-1
+        res[tmp] = n
         players[n-1] = i
         players[n] = tmp
-        res[i] -= 1
-        res[tmp] += 1
+    
     return players
