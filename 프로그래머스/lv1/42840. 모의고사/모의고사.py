@@ -4,22 +4,16 @@ def solution(answers):
     two = [2,1,2,3,2,4,2,5]*1250
     three = [3,3,1,1,2,2,4,4,5,5]*1000
     
-    ones,twos,threes = 0,0,0
+    scores = [0,0,0]
     for i in range(len(answers)):
         if answers[i] == one[i]:
-            ones+=1
+            scores[0]+=1
         if answers[i] == two[i]:
-            twos+=1
+            scores[1]+=1
         if answers[i] == three[i]:
-            threes+=1
-    answer.append((ones,1))
-    answer.append((twos,2))
-    answer.append((threes,3))
+            scores[2]+=1
 
-    cnt = max(ones,twos,threes)
-    res = []
-    for i in answer:
-        if i[0] == cnt:
-            res.append(i[1])
-    res.sort()
-    return res
+    for i,v in enumerate(scores):
+        if v == max(scores):
+            answer.append(i+1)
+    return answer
