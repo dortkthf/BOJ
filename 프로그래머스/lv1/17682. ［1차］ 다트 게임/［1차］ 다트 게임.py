@@ -1,18 +1,14 @@
 def solution(dartResult):
     answer = []
     score = ''
+    scoredic = {'S':1,'D':2,'T':3}
+    
     for dart in dartResult:
         if dart.isdigit():
             score+=dart
         else:
-            if dart == 'S':
-                score = int(score)**1
-                answer.append(score)
-            elif dart == 'D':
-                score = int(score)**2
-                answer.append(score)
-            elif dart == 'T':
-                score = int(score)**3
+            if dart in scoredic:
+                score = int(score)**scoredic[dart]
                 answer.append(score)
             elif dart == '*':
                 if len(answer) > 1:
