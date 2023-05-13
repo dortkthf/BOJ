@@ -1,15 +1,9 @@
-import math
+from math import sqrt
 
 def solution(r1, r2):
-    answer = 0
-    for x in range(r2+1):
-        maxy = int((r2**2-x**2)**(1/2))
-        if x >= r1:
-            miny = 0
-        else:
-            if int((r1**2-x**2)**(1/2)) < (r1**2-x**2)**(1/2):
-                miny = int((r1**2-x**2)**(1/2))+1
-            else:
-                miny = int((r1**2-x**2)**(1/2))
-        answer+=(maxy-miny+1)
-    return answer*4-(r2-r1+1)*4
+    quar = 0
+    for i in range(0, r1):
+        quar += int(sqrt(r2**2 - i**2)) - int(sqrt(r1**2 - i**2 - 1))
+    for i in range(r1, r2):
+        quar += int(sqrt(r2**2 - i**2))
+    return quar * 4
