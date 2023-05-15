@@ -1,5 +1,6 @@
 import sys
 from heapq import heappop, heappush
+input = sys.stdin.readline
 
 INF = int(1e9)
 
