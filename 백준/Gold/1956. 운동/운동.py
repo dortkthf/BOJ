@@ -2,18 +2,15 @@ import sys
 input = sys.stdin.readline
 
 V,E = map(int,input().split())
-graph = [list(sys.maxsize for _ in range(V+1)) for _ in range(V+1)]
-answer = sys.maxsize
+graph = [list(float('inf') for _ in range(V+1)) for _ in range(V+1)]
+answer = float('inf')
 
 for _ in range(E):
     a,b,c = map(int,input().split())
-    if graph[a][b] > c:
-        graph[a][b] = c
+    graph[a][b] = c
 
 for i in range(1+V):
-    for j in range(1+V):
-        if i == j:
-            graph[i][j] = 0
+    graph[i][i] = 0
 
 for k in range(1,1+V):
     for i in range(1,1+V):
@@ -22,10 +19,10 @@ for k in range(1,1+V):
 
 for i in range(1,1+V):
     for j in range(i+1,1+V):
-        if graph[i][j] != sys.maxsize and graph[i][j]+graph[j][i] < answer:
+        if graph[i][j] != float('inf') and graph[i][j]+graph[j][i] < answer:
             answer = graph[i][j]+graph[j][i]
 
-if answer == sys.maxsize:
+if answer == float('inf'):
     print(-1)
 else:
     print(answer)
