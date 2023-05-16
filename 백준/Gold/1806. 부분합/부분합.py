@@ -16,7 +16,7 @@ if s in numbers:
     exit(0)
 
 def find(start,end,res):
-    while start < end and end<=n:
+    while start < end and end <= n:
         sumnum = sumnums[end]-sumnums[start-1]
         if sumnum >= s:
             if res > end-start+1:
