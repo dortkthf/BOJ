@@ -4,17 +4,15 @@ x = int(input())
 
 numbers.sort()
 
-cnt = 0
+def two_pointer(start,end,cnt):
+    while start < end:
+        if numbers[start]+numbers[end] == x:
+            cnt+=1
+            end-=1
+        elif numbers[start]+numbers[end] < x:
+            start+=1
+        else:
+            end-=1
+    return cnt
 
-start = 0
-end = n-1
-
-while start < end:
-    if numbers[start]+numbers[end] == x:
-        cnt+=1
-        end-=1
-    elif numbers[start]+numbers[end] < x:
-        start+=1
-    else:
-        end-=1
-print(cnt)
+print(two_pointer(0,n-1,0))
