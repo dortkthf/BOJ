@@ -3,6 +3,7 @@ input = sys.stdin.readline
 
 n,s = map(int,input().split())
 numbers = list(map(int,input().split()))
+numbers+=[0]
 
 def find(start,end,res,snum):
     while start <= end and end < n:
@@ -13,8 +14,7 @@ def find(start,end,res,snum):
             start+=1
         elif snum < s:
             end+=1
-            if end < n:
-                snum+=numbers[end]
+            snum+=numbers[end]
     if res == 100001:
         res = 0
     return res
