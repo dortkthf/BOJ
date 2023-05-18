@@ -7,19 +7,19 @@ nums = list(map(int,input().split()))
 left_nums = nums[:n//2]
 right_nums = nums[n//2:]
 
-def sum_list(nums_list):
-    nums_sum_list = []
-    for i in range(len(nums_list)+1):
-        for com in combinations(nums_list,i):
-            nums_sum_list.append(sum(com))
-    return nums_sum_list
+def make_nums_sum(nums):
+    nums_sum = []
+    for i in range(len(nums)+1):
+        for com in combinations(nums,i):
+            nums_sum.append(sum(com))
+    return nums_sum
 
-def calculation(left,right,c):
-    left.sort()
+def find_answer(left,right,c):
     ans = 0
+    left.sort()
     for i in right:
-        max_y = c-i
-        ans += bisect.bisect_right(left,max_y)
+        maxvalue = c-i
+        ans+=bisect.bisect_right(left,maxvalue)
     return ans
 
-print(calculation(sum_list(left_nums),sum_list(right_nums),c))
+print(find_answer(make_nums_sum(left_nums),make_nums_sum(right_nums),c))
